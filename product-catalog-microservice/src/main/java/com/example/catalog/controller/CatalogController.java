@@ -52,6 +52,7 @@ public class CatalogController {
 	
 	@PostMapping("/products")
 	public Product addNewProductToCatalog(@RequestBody Product product) {
+        System.err.println("New post request has arrived!");
 		return catalogService.createProduct(product);
 	}
 	
