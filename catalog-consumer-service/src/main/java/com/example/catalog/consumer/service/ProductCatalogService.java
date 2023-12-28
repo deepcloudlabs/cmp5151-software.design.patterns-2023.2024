@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.catalog.entity.Product;
 
-@FeignClient(name = "CATALOG")
+@FeignClient(name = "catalog")
 public interface ProductCatalogService {
 	@PostMapping("/catalog/api/v1/catalog/products")
 	public Product addProduct(@RequestBody Product product);

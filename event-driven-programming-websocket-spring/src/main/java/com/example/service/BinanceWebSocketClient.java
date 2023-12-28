@@ -1,7 +1,5 @@
 package com.example.service;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
@@ -14,6 +12,8 @@ import org.springframework.web.socket.client.WebSocketClient;
 
 import com.example.dto.Trade;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class BinanceWebSocketClient implements WebSocketHandler {
@@ -29,7 +29,7 @@ public class BinanceWebSocketClient implements WebSocketHandler {
 
 	@PostConstruct
 	public void init() {
-		client.doHandshake(this, wsUrl);
+		client.execute(this, wsUrl).thenAccept(session -> System.out.println("Connection is open with session id: %s".formatted(session.getId())));
 	}
 
 	@Override
